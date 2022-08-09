@@ -22,6 +22,26 @@ RSpec.describe "Comments", type: :request do
     end 
   end
 
+  describe "GET/ comment" do
+    before(:each) do
+      comment = build(:comment)
+      comment_params = FactoryBot.attributes_for(:comment)
+      comments_path = "/articles/#{@article_id}/comments"
+      post comments_path, params: { comment: comment_params}
+
+      comment_path = "/articles/#{@article_id}/comments/#{Comment.last.id}"
+      get comment_path
+    end
+    
+    it "returns success status" do
+      expect(response).to have_http_status(200)
+    end
+
+    it "returns the correct message" do
+      expect(response.body).to match(/Comentário carregado./)
+    end
+  end
+
   describe "POST/ comments" do
     before(:each) do
       @comment = build(:comment)
