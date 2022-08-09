@@ -17,4 +17,9 @@ RSpec.describe Comment, type: :model do
     comment = build(:comment, status: nil)
     expect(comment).to_not be_valid
   end
+
+  it "returns archived status correctly" do
+    comment = build(:comment, status: 'archived')
+    expect(comment.archived?).to be true
+  end
 end

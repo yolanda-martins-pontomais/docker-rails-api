@@ -32,6 +32,7 @@ group :development, :test do
   gem 'rspec-rails', '~>4.0.1'
   gem 'ffaker'
   gem 'factory_bot_rails'
+  gem 'simplecov', require: false, group: :test
 end
 
 group :development do
